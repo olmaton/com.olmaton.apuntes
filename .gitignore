@@ -5,3 +5,4 @@ build/built-jar.properties
 build/*
 nbproject/private/*
 src/presentacion/utiles/olmjtable/TableTest.java
+/dist/

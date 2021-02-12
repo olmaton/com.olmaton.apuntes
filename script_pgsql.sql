@@ -16,17 +16,19 @@ id_usuario int not null,
 creado TIMESTAMP not null default NOW(),
 actualizado TIMESTAMP not null default NOW(),
 activo int not null default 1,
-CONSTRAINT cuentas_fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+CONSTRAINT cuentas_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
 create table tipos(
 id serial primary key not null,
 nombre varchar(20) not null,
 signo int not null,
-general int not null default 0
+id_usuario int not null,
+general int not null default 0,
+CONSTRAINT tipos_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
-insert into tipos(nombre,signo,general) values('Ingresos',1,1),('Egresos',-1,1);
+--insert into tipos(nombre,signo,general) values('Ingresos',1,1),('Egresos',-1,1);
 
 create table movimientos(
 id serial primary key not null,

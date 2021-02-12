@@ -1,7 +1,6 @@
 package entidades;
 
 import presentacion.utiles.Fechas;
-import entidades.Cuenta;
 import java.time.LocalDateTime;
 import presentacion.utiles.Montos;
 
