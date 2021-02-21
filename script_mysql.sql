@@ -8,7 +8,22 @@ nombres varchar(50) not null,
 email varchar(100) not null unique,
 password varchar(300) not null,
 intentos_error int not null default 0,
+activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
 creado datetime not null default current_timestamp
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+create table amigos(
+id int primary key not null auto_increment,
+id_usuario int not null,
+id_usuario_amigo int not null,
+tipo TINYINT not null default 0 comment '0:En proceso,1:Aceptado,2:Rechazado,3:Anulado',
+id_usuario_responsable int,
+creado datetime not null default current_timestamp,
+actualizado datetime not null default current_timestamp,
+activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
+CONSTRAINT amigos_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+CONSTRAINT amigos_fk_usuarios_amigo FOREIGN KEY (id_usuario_amigo) REFERENCES usuarios(id),
+CONSTRAINT amigos_fk_usuarios_responsable FOREIGN KEY (id_usuario_responsable) REFERENCES usuarios(id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 create table usuarios_sesion(
@@ -24,7 +39,7 @@ fecha_ultimo_acceso datetime not null,
 fecha_registro datetime not null default current_timestamp,
 fecha_cierre datetime,
 activo boolean not null default true,
-CONSTRAINT usuarios_sesion_fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+CONSTRAINT usuarios_sesion_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
 create table cuentas(
@@ -42,7 +57,7 @@ id_usuario int not null,
 id_cuenta int not null,
 tipo TINYINT not null default 1 comment '0:En proceso,1:Propietario,2:Compartido',
 activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
-CONSTRAINT cuentas_usuarios_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+CONSTRAINT cuentas_usuarios_fk_usuarioss FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
 CONSTRAINT cuentas_usuarios_fk_cuentas FOREIGN KEY (id_cuenta) REFERENCES cuentas(id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
@@ -55,7 +70,16 @@ activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
 CONSTRAINT tipos_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-#insert into tipos(nombre,signo) values('Ingresos',1),('Egresos',-1);
+create table tipos_usuarios(
+id int primary key not null auto_increment,
+id_usuario int not null,
+id_tipo int not null,
+creado datetime not null default current_timestamp,
+actualizado datetime not null default current_timestamp,
+activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
+CONSTRAINT tipos_usuarios_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+CONSTRAINT tipos_usuarios_fk_tipos FOREIGN KEY (id_tipo) REFERENCES tipos(id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 create table movimientos(
 id int primary key not null auto_increment,
