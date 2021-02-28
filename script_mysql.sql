@@ -12,7 +12,7 @@ activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
 creado datetime not null default current_timestamp
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-create table amigos(
+create table contactos(
 id int primary key not null auto_increment,
 id_usuario int not null,
 id_usuario_amigo int not null,
@@ -21,9 +21,9 @@ id_usuario_responsable int,
 creado datetime not null default current_timestamp,
 actualizado datetime not null default current_timestamp,
 activo TINYINT not null default 1 comment '0:Inactivo,1:Activo',
-CONSTRAINT amigos_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-CONSTRAINT amigos_fk_usuarios_amigo FOREIGN KEY (id_usuario_amigo) REFERENCES usuarios(id),
-CONSTRAINT amigos_fk_usuarios_responsable FOREIGN KEY (id_usuario_responsable) REFERENCES usuarios(id)
+CONSTRAINT contactos_fk_usuarios FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+CONSTRAINT contactos_fk_usuarios_amigo FOREIGN KEY (id_usuario_amigo) REFERENCES usuarios(id),
+CONSTRAINT contactos_fk_usuarios_responsable FOREIGN KEY (id_usuario_responsable) REFERENCES usuarios(id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 create table usuarios_sesion(
