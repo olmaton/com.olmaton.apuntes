@@ -12,6 +12,26 @@ public class Usuario {
     private String email;
     private String password;
     private LocalDateTime creado;    
+private Aplicacion origen;
+    public Usuario() {
+    }
+
+    
+    
+    public Usuario(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public Aplicacion getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(Aplicacion origen) {
+        this.origen = origen;
+    }
+
+
 
     public int getId() {
         return id;

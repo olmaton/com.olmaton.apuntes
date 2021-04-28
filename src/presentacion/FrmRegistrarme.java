@@ -273,7 +273,8 @@ public class FrmRegistrarme extends javax.swing.JFrame  implements RegistrarmeIn
         System.exit(0);
     }
 
-    private void irLogin() {
+    @Override
+    public void irLogin() {
         new FrmLogin().setVisible(true);
         this.dispose();
     }

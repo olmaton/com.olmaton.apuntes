@@ -29,6 +29,7 @@ public interface MovimientosInterface {
     //Tipo getFiltroTipo();
     //String getBuscar();    
     void llenarTotales(String entradas,String salidas,String total,String entradas_pre,String salidas_pre,String total_pre);
+    void llenarTotalGeneral(String total);
     int getLimit();
     int getOffset();
     void llenarLimits(ArrayList<Limit> lista);

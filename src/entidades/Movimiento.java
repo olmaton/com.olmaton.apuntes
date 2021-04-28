@@ -2,6 +2,7 @@ package entidades;
 
 import presentacion.utiles.Fechas;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import presentacion.utiles.Montos;
 
 /**
@@ -156,5 +157,13 @@ public class Movimiento {
         }else{
             this.valor_unitario_ingreso = 0.0;
         }
+    }
+    
+    
+public ArrayList<String[]> obtenerParametrosUrl(){
+        String[] prmId = {"id",id+""};
+        ArrayList retorno = new ArrayList();
+        retorno.add(prmId);
+        return retorno;
     }
 }

@@ -4,6 +4,7 @@ package entidades;
 
 import presentacion.utiles.Fechas;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Cuenta {
     private LocalDateTime creado;
     private LocalDateTime actualizado;
     private int activo;
-    private Usuario usuario;
+//    private Usuario usuario;
 
     public Cuenta(int id) {
         this.id = id;
@@ -77,12 +78,11 @@ public class Cuenta {
         this.activo = activo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+public ArrayList<String[]> obtenerParametrosUrl(){
+        String[] prmId = {"id",id+""};
+        ArrayList retorno = new ArrayList();
+        retorno.add(prmId);
+        return retorno;
     }
 
     @Override

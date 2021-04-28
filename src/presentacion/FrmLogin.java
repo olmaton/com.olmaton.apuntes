@@ -1,7 +1,7 @@
 package presentacion;
 
 import configuracion.Colores;
-import controlador.LoginController;
+import controlador.AuthController;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -14,12 +14,12 @@ import presentacion.utiles.JPanelFondo;
 
 public class FrmLogin extends javax.swing.JFrame implements LoginInterface{
 
-    LoginController controlador;
+    AuthController controlador;
     public FrmLogin() {
         initComponents();
 
         setStyles();
-        controlador = new LoginController(this);
+        controlador = new AuthController(this);
     }
 
     private void setStyles() {

@@ -17,7 +17,7 @@ public class Imputs {
             public void keyTyped(KeyEvent e) {
                 if(!Character.isDigit(e.getKeyChar())&&e.getKeyChar()!='.')e.consume();
                 if(e.getKeyChar()=='.'&&jTextField.getText().contains("."))e.consume();
-                if(jTextField.getText().length()>=10)e.consume();
+                if(jTextField.getText().length()>=20)e.consume();
             }
 
             @Override
@@ -53,7 +53,7 @@ public class Imputs {
             @Override
             public void keyTyped(KeyEvent e) {
                 if(!Character.isDigit(e.getKeyChar()))e.consume();
-                if(jTextField.getText().length()>=10)e.consume();
+                if(jTextField.getText().length()>=20)e.consume();
             }
 
             @Override

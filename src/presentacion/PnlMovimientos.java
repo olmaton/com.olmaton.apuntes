@@ -60,7 +60,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         setKeyListener();
         //Se carga por única vez
         controlador.llenarLimits();
-        
+
     }
 
     public static PnlMovimientos getInstancia(ApuntesInterface vistaPadre) {
@@ -105,7 +105,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         Imputs.setDecimal(txtMonto);
         Imputs.setInteger(txtCantidad);
         DatePickerUtil.setFechaHoraMediaNoche(dtpFechaHora);
-         getDTM();
+        getDTM();
     }
 
     private DefaultTableModel getDTM() {
@@ -119,7 +119,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         head.addColumn("Cantidad", 150, SwingConstants.CENTER);
         head.addColumn("Monto", 150, SwingConstants.RIGHT);
         head.addColumn("Actualizado", 200, SwingConstants.CENTER);
-        head.addColumn("Presupuesto", 60);        
+        head.addColumn("Presupuesto", 60);
         head.addColumn("-", 60);
         head.addColumn("-", 60);
 
@@ -133,10 +133,10 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         final OlmCustomJTable olmTable = new OlmCustomJTable(tbLista, head, render);
 
         final JCheckBox chkPresupuestos = olmTable.addCheckBox(head.getSize() - 3);
-        chkPresupuestos.addActionListener((ActionEvent e) -> {            
+        chkPresupuestos.addActionListener((ActionEvent e) -> {
             controlador.actualizarEsPresupuesto(Integer.valueOf(chkPresupuestos.getName()), chkPresupuestos.isSelected());
         });
-        
+
         final JButton btnEditar = olmTable.addButton(head.getSize() - 2, Imagenes.getImage("edit"));
         btnEditar.addActionListener((ActionEvent e) -> {
 
@@ -200,6 +200,8 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         jSeparator1 = new javax.swing.JSeparator();
         cboLimit = new javax.swing.JComboBox<>();
         lblTotal = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtTotalGeneral = new javax.swing.JTextField();
 
         pnlFormulario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -594,6 +596,35 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
 
         lblTotal.setText("Total de registros: 5000");
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Total general"));
+
+        txtTotalGeneral.setEditable(false);
+        txtTotalGeneral.setBackground(new java.awt.Color(255, 240, 255));
+        txtTotalGeneral.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTotalGeneral.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotalGeneral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTotalGeneralKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtTotalGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(txtTotalGeneral)
+                .addGap(6, 6, 6))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -618,10 +649,13 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
                                 .addComponent(cboOffset, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -645,8 +679,9 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -728,6 +763,10 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         agregaTipo();
     }//GEN-LAST:event_btnAgregarTipoActionPerformed
 
+    private void txtTotalGeneralKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalGeneralKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalGeneralKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarTipo;
     private javax.swing.JButton btnAnterior;
@@ -757,6 +796,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -774,16 +814,17 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
     private javax.swing.JTextField txtSalidas;
     private javax.swing.JTextField txtSalidasPresupuesto;
     private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtTotalGeneral;
     private javax.swing.JTextField txtTotalPresupuesto;
     // End of variables declaration//GEN-END:variables
 
-    private void agregaTipo(){
+    private void agregaTipo() {
         JdiMovimientosTipo jdiMovimientoTipo = new JdiMovimientosTipo(vistaPadre.getFramePrincipal());
         jdiMovimientoTipo.setLocationRelativeTo(this);
         jdiMovimientoTipo.setVisible(true);
         controlador.listarTipos();
     }
-    
+
     private void listarOffset() {
         controlador.listarOffset();
     }
@@ -798,7 +839,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         if (cboOffset.getSelectedIndex() > 0) {
             btnAnterior.setEnabled(true);
         }
-        
+
         if (cboOffset.getSelectedIndex() < cboOffset.getItemCount() - 1) {
             btnSiguiente.setEnabled(true);
         }
@@ -970,7 +1011,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
     public FiltroMovimientoDTO getFiltro() {
         FiltroMovimientoDTO sf = jdiMovimientosFiltros.getFiltro();
         sf.setBuscar(txtBuscar.getText());
-        sf.setLimit(((Limit) cboLimit.getSelectedItem()).getCantidad());        
+        sf.setLimit(((Limit) cboLimit.getSelectedItem()).getCantidad());
         if (cboOffset.getSelectedIndex() > 0) {
             sf.setOffset(((Offset) cboOffset.getSelectedItem()).getFactor() * sf.getLimit());
         }
@@ -986,6 +1027,12 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         txtEntradasPresupuesto.setText(entradas_pre);
         txtSalidasPresupuesto.setText(salidas_pre);
         txtTotalPresupuesto.setText(total_pre);
+
+    }
+
+    @Override
+    public void llenarTotalGeneral(String total) {
+        txtTotalGeneral.setText(total);
     }
 
     @Override

@@ -16,7 +16,6 @@ import modelo.intefaces.ITipoModelDao;
  */
 public class TipoDao implements ITipoModelDao {
 
-
     @Override
     public ArrayList<Tipo> listar(Usuario usuario) throws OlmException {
         ArrayList<Tipo> retorno = new ArrayList<>();
@@ -152,7 +151,7 @@ public class TipoDao implements ITipoModelDao {
         try {
             PreparedStatement ps = ConexionMysql.get().prepareStatement("update tipos_usuarios set id_tipo=?,actualizado=current_timestamp where id=?");
             ps.setInt(1, tipo.getId());
-            ps.setInt(2, tipo.getId_relacion_usuario());
+//            ps.setInt(2, tipo.getId_relacion_usuario());
             return ps.executeUpdate()>0; 
         } catch (SQLException e) {
             throw new OlmException(e.getMessage(), 3,this.getClass().getName()+".eliminar");
@@ -174,7 +173,7 @@ public class TipoDao implements ITipoModelDao {
             }
             
             if(exito){
-                nuevo.setId_relacion_usuario(tipo.getId_relacion_usuario());
+//                nuevo.setId_relacion_usuario(tipo.getId_relacion_usuario());
                 exito = editarTiposUsuarios(nuevo);
             }
             

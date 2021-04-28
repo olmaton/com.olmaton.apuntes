@@ -1,15 +1,13 @@
 package modelo.intefaces;
 
-import presentacion.utiles.OlmException;
 import entidades.Usuario;
+import presentacion.utiles.OlmException;
 
 /**
  *
  * @author olmaton
  */
 public interface IUsuarioModelDao {
-
     public boolean registrarme(Usuario usuario) throws OlmException;
     public boolean existeEmail(String email) throws OlmException;
-    public Usuario login(String email, String contrasenia) throws OlmException;
 }

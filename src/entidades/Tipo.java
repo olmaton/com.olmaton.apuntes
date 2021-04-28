@@ -1,14 +1,18 @@
 package entidades;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author olmaton
  */
 public class Tipo {
     private int id;
-    private int id_relacion_usuario;
+    //private int id_relacion_usuario;
     private String nombre;
     private int signo;
+    
+    
 
     public Tipo(String nombre, int signo) {
         this.nombre = nombre;
@@ -59,13 +63,18 @@ public class Tipo {
         return nombre;
     }
 
-    public int getId_relacion_usuario() {
-        return id_relacion_usuario;
+//    public int getId_relacion_usuario() {
+//        return id_relacion_usuario;
+//    }
+//
+//    public void setId_relacion_usuario(int id_relacion_usuario) {
+//        this.id_relacion_usuario = id_relacion_usuario;
+//    }
+    public ArrayList<String[]> obtenerParametrosUrl(){
+        String[] prmId = {"id",id+""};
+        ArrayList retorno = new ArrayList();
+        retorno.add(prmId);
+        return retorno;
     }
-
-    public void setId_relacion_usuario(int id_relacion_usuario) {
-        this.id_relacion_usuario = id_relacion_usuario;
-    }
-    
     
 }

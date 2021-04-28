@@ -4,6 +4,7 @@ import presentacion.utiles.OlmException;
 import entidades.Cuenta;
 import entidades.Usuario;
 import java.util.ArrayList;
+import servicios.Sesion;
 
 /**
  *
@@ -11,13 +12,13 @@ import java.util.ArrayList;
  */
 public interface ICuentaModel {
 
-    public boolean guardar(Cuenta cuenta) throws OlmException;
+    public boolean guardar(Cuenta cuenta,Sesion sesion) throws OlmException;
 
-    public boolean editar(Cuenta cuenta) throws OlmException;
+    public boolean editar(Cuenta cuenta,Sesion sesion) throws OlmException;
 
-    public boolean eliminar(Cuenta cuenta) throws OlmException;
+    public boolean eliminar(Cuenta cuenta,Sesion sesion) throws OlmException;
 
-    public ArrayList<Cuenta> listar(Usuario usuario) throws OlmException;
+    public ArrayList<Cuenta> listar(Sesion sesion) throws OlmException;
 
-    public Cuenta getPorId(int id) throws OlmException;
+    public Cuenta getPorId(int id,Sesion sesion) throws OlmException;
 }

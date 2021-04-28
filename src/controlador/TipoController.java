@@ -4,6 +4,7 @@ import configuracion.Configuracion;
 import presentacion.utiles.OlmException;
 import entidades.Tipo;
 import java.util.ArrayList;
+import modelo.api.TipoApiModel;
 import servicios.Sesion;
 import modelo.intefaces.ITipoModel;
 import presentacion.interfaces.IMovimientoTipo;
@@ -25,6 +26,7 @@ public class TipoController {
         this.vista = vista;
         switch (Configuracion.ORIGEN_DATOS) {
             case "api": {
+                modeloTipo = new TipoApiModel();
                 break;
             }
             case "bd": {
@@ -46,7 +48,7 @@ public class TipoController {
          boolean confirmar = vista.confirmar("¿Desea eliminar el tipo de movimiento: " + lista.get(idx).getNombre() + "?");
         if (confirmar) {
             try {
-                confirmar = modeloTipo.eliminar(lista.get(idx));
+                confirmar = modeloTipo.eliminar(lista.get(idx),Sesion.getInstancia());
                 if (confirmar) {
                     inicializar();
                     listar();
@@ -64,7 +66,7 @@ public class TipoController {
 
     public void listar() {
         try {
-            lista = modeloTipo.listar(Sesion.getInstancia().getUsuario());
+            lista = modeloTipo.listar(Sesion.getInstancia());
             vista.listar(lista);
         } catch (OlmException e) {
             vista.mostrarMensaje(e.getMessage(), e.getCode());
@@ -81,12 +83,12 @@ public class TipoController {
             Tipo nuevo = vista.getNuevo();
             if (tipo == null) {
                 //Nuevo 
-                procesado = modeloTipo.agregarPorUsuario(nuevo,Sesion.getInstancia().getUsuario());
+                procesado = modeloTipo.agregarPorUsuario(nuevo,Sesion.getInstancia());
             } else {
                 //Editar               
                 tipo.setNombre(nuevo.getNombre());
                 tipo.setSigno(nuevo.getSigno());             
-                procesado = modeloTipo.editarPorUsuario(tipo);
+                procesado = modeloTipo.editarPorUsuario(tipo,Sesion.getInstancia());
             }
         } catch (OlmException e) {
             vista.mostrarMensaje(e.getMessage(), e.getCode());

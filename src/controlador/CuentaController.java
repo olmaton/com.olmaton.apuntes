@@ -5,6 +5,8 @@ import presentacion.utiles.OlmException;
 import entidades.Cuenta;
 import entidades.Movimiento;
 import java.util.ArrayList;
+import modelo.CuentaModel;
+import modelo.api.CuentaApiModel;
 import presentacion.interfaces.CuentasInterface;
 import servicios.Sesion;
 import modelo.intefaces.ICuentaModel;
@@ -24,12 +26,11 @@ public class CuentaController {
         this.vista = vista;
         switch (Configuracion.ORIGEN_DATOS) {
             case "api": {
-                //Es un ejemplo(Sin funcionalidad)
-                modelo = new modelo.api.CuentaModel();
+                modelo = new CuentaApiModel();
                 break;
             }
             case "bd": {
-                modelo = new modelo.CuentaModel();
+                modelo = new CuentaModel();
                 break;
             }
             default: {
@@ -48,7 +49,7 @@ public class CuentaController {
         boolean confirmar = vista.confirmar("Al eliminar una cuenta, todos los movimientos asociados también se eliminaran.<br>¿Desea eliminar la cuenta: " + lista.get(idx).getNombre() + "?");
         if (confirmar) {
             try {
-                confirmar = modelo.eliminar(lista.get(idx));
+                confirmar = modelo.eliminar(lista.get(idx),Sesion.getInstancia());
                 if(confirmar){
                     inicializar();
                     listar();
@@ -67,7 +68,7 @@ public class CuentaController {
     public void listar() {
         lista = new ArrayList();
         try {
-            lista = modelo.listar(Sesion.getInstancia().getUsuario());
+            lista = modelo.listar(Sesion.getInstancia());
         } catch (OlmException e) {
             vista.mostrarMensaje(e.getMessage(), e.getCode());
         }
@@ -81,9 +82,9 @@ public class CuentaController {
         if (cuenta == null) {
             //Nuevo
             Cuenta nueva = vista.getNuevo();
-            nueva.setUsuario(Sesion.getInstancia().getUsuario());
+            //nueva.setUsuario(Sesion.getInstancia().getUsuario());
             try {
-                procesado = modelo.guardar(nueva);
+                procesado = modelo.guardar(nueva,Sesion.getInstancia());
             } catch (OlmException e) {
                 vista.mostrarMensaje(e.getMessage(), e.getCode());
             }
@@ -92,9 +93,9 @@ public class CuentaController {
             Cuenta nueva = vista.getNuevo();
             cuenta.setNombre(nueva.getNombre());
             cuenta.setDescripcion(nueva.getDescripcion());
-            cuenta.setUsuario(Sesion.getInstancia().getUsuario());
+//            cuenta.setUsuario(Sesion.getInstancia().getUsuario());
             try {
-                procesado = modelo.editar(cuenta);                
+                procesado = modelo.editar(cuenta,Sesion.getInstancia());                
             } catch (OlmException e) {
                 vista.mostrarMensaje(e.getMessage(), e.getCode());
             }

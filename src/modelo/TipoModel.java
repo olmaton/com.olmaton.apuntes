@@ -3,10 +3,10 @@ package modelo;
 import presentacion.utiles.OlmException;
 import configuracion.Configuracion;
 import entidades.Tipo;
-import entidades.Usuario;
 import java.util.ArrayList;
 import modelo.intefaces.ITipoModelDao;
 import modelo.intefaces.ITipoModel;
+import servicios.Sesion;
 
 /**
  *
@@ -32,22 +32,22 @@ public class TipoModel implements ITipoModel{
     }
 
     @Override
-    public ArrayList<Tipo> listar(Usuario usuario) throws OlmException {
-        return dao.listar(usuario);
+    public ArrayList<Tipo> listar(Sesion sesion) throws OlmException {
+        return dao.listar(sesion.getUsuario());
     }
 
     @Override
-    public boolean eliminar(Tipo tipo) throws OlmException {
+    public boolean eliminar(Tipo tipo,Sesion sesion) throws OlmException {
         return dao.eliminar(tipo);
     }
 
     @Override
-    public boolean agregarPorUsuario(Tipo tipo, Usuario usuario) throws OlmException {
-        return dao.agregarPorUsuario(tipo, usuario);
+    public boolean agregarPorUsuario(Tipo tipo, Sesion sesion) throws OlmException {
+        return dao.agregarPorUsuario(tipo, sesion.getUsuario());
     }
 
     @Override
-    public boolean editarPorUsuario(Tipo tipo) throws OlmException {
+    public boolean editarPorUsuario(Tipo tipo,Sesion sesion) throws OlmException {
         return dao.editarPorUsuario(tipo);
     }
      

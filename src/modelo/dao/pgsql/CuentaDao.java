@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import modelo.intefaces.ICuentaModelDao;
+import servicios.Sesion;
 
 /**
  *
@@ -18,12 +19,12 @@ import modelo.intefaces.ICuentaModelDao;
 public class CuentaDao implements ICuentaModelDao{
 
     @Override
-    public boolean guardar(Cuenta cuenta) throws OlmException {        
+    public boolean guardar(Cuenta cuenta,Usuario usuario) throws OlmException {        
         try {
             PreparedStatement ps = ConexionPgsql.get().prepareStatement("insert into cuentas(nombre,descripcion,id_usuario) values(?,?,?) ",Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, cuenta.getNombre());
             ps.setString(2, cuenta.getDescripcion());
-            ps.setInt(3, cuenta.getUsuario().getId());
+            ps.setInt(3, usuario.getId());
             ps.executeUpdate();    
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){

@@ -2,13 +2,10 @@ package controlador;
 
 import configuracion.Configuracion;
 import presentacion.utiles.OlmException;
-import entidades.Cuenta;
 import entidades.Usuario;
-import java.util.ArrayList;
-import presentacion.FrmPrincipal;
-import presentacion.interfaces.CuentasInterface;
+import modelo.UsuarioModel;
+import modelo.api.UsuarioApiModel;
 import presentacion.interfaces.RegistrarmeInterface;
-import servicios.Sesion;
 import modelo.intefaces.IUsuarioModel;
 
 /**
@@ -24,10 +21,11 @@ public class RegistrarmeController {
         this.vista = vista;
         switch (Configuracion.ORIGEN_DATOS) {
             case "api": {
+                modelo = new UsuarioApiModel();
                 break;
             }
             case "bd": {
-                modelo = new modelo.UsuarioModel();
+                modelo = new UsuarioModel();
                 break;
             }
             default: {
@@ -52,7 +50,7 @@ public class RegistrarmeController {
             procesado = modelo.registrarme(usuario);
             
             if(procesado){
-                Sesion.getInstancia().setUsuario(usuario);
+                vista.mostrarMensaje("¡Registro exitoso!<br>Ya puede usar su cuenta para ingresar al sistema.", 0);
             }
             
         } catch (OlmException e) {
@@ -60,7 +58,7 @@ public class RegistrarmeController {
         }
 
         if (procesado) {
-            vista.irPrincipal();
+            vista.irLogin();
         }
 
     }

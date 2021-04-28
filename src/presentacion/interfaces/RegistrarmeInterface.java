@@ -12,4 +12,5 @@ public interface RegistrarmeInterface {
     boolean validar();
     boolean contraseniasIguales();
     void irPrincipal();
+    void irLogin();
 }

@@ -3,10 +3,10 @@ package modelo;
 import presentacion.utiles.OlmException;
 import configuracion.Configuracion;
 import entidades.Cuenta;
-import entidades.Usuario;
 import java.util.ArrayList;
 import modelo.intefaces.ICuentaModel;
 import modelo.intefaces.ICuentaModelDao;
+import servicios.Sesion;
 
 /**
  *
@@ -31,27 +31,27 @@ public class CuentaModel implements ICuentaModel{
         }
     }
     @Override
-    public boolean guardar(Cuenta cuenta) throws OlmException {
-        return dao.guardar(cuenta);
+    public boolean guardar(Cuenta cuenta,Sesion sesion) throws OlmException {
+        return dao.guardar(cuenta,sesion.getUsuario());
     }
 
     @Override
-    public boolean editar(Cuenta cuenta) throws OlmException {
+    public boolean editar(Cuenta cuenta,Sesion sesion) throws OlmException {
         return dao.editar(cuenta);
     }
 
     @Override
-    public boolean eliminar(Cuenta cuenta) throws OlmException {
+    public boolean eliminar(Cuenta cuenta,Sesion sesion) throws OlmException {
         return dao.eliminar(cuenta);
     }
 
     @Override
-    public ArrayList<Cuenta> listar(Usuario usuario) throws OlmException {
-        return dao.listar(usuario);
+    public ArrayList<Cuenta> listar(Sesion sesion) throws OlmException {
+        return dao.listar(sesion.getUsuario());
     }
 
     @Override
-    public Cuenta getPorId(int id) throws OlmException {
+    public Cuenta getPorId(int id,Sesion sesion) throws OlmException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

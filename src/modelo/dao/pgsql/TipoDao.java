@@ -28,7 +28,7 @@ public class TipoDao implements ITipoModelDao {
                 tipo.setId(rs.getInt("id"));
                 tipo.setNombre(rs.getString("nombre"));
                 tipo.setSigno(rs.getInt("signo"));
-                tipo.setId_relacion_usuario(rs.getInt("id_relacion_usuario"));
+                //tipo.setId_relacion_usuario(rs.getInt("id_relacion_usuario"));
                 retorno.add(tipo);
             }
         } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class TipoDao implements ITipoModelDao {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                tipo.setId_relacion_usuario(rs.getInt(1));
+                //tipo.setId_relacion_usuario(rs.getInt(1));
                 return true;
             }
         } catch (SQLException e) {
@@ -152,7 +152,7 @@ public class TipoDao implements ITipoModelDao {
         try {
             PreparedStatement ps = ConexionPgsql.get().prepareStatement("update tipos_usuarios set id_tipo=?,actualizado=current_timestamp where id=?");
             ps.setInt(1, tipo.getId());
-            ps.setInt(2, tipo.getId_relacion_usuario());
+            //ps.setInt(2, tipo.getId_relacion_usuario());
             return ps.executeUpdate()>0; 
         } catch (SQLException e) {
             throw new OlmException(e.getMessage(), 3,this.getClass().getName()+".eliminar");
@@ -174,7 +174,7 @@ public class TipoDao implements ITipoModelDao {
             }
             
             if(exito){
-                nuevo.setId_relacion_usuario(tipo.getId_relacion_usuario());
+                //nuevo.setId_relacion_usuario(tipo.getId_relacion_usuario());
                 exito = editarTiposUsuarios(nuevo);
             }
             
@@ -202,7 +202,7 @@ public class TipoDao implements ITipoModelDao {
     public boolean eliminar(Tipo tipo) throws OlmException {
         try {
             PreparedStatement ps = ConexionPgsql.get().prepareStatement("update tipos_usuarios set activo=0,actualizado=current_timestamp where id=?");
-            ps.setInt(1, tipo.getId_relacion_usuario());
+            //ps.setInt(1, tipo.getId_relacion_usuario());
             return ps.executeUpdate()>0; 
         } catch (SQLException e) {
             throw new OlmException(e.getMessage(), 3,this.getClass().getName()+".eliminar");

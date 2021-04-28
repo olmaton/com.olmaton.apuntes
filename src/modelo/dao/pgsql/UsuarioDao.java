@@ -46,26 +46,7 @@ public class UsuarioDao implements IUsuarioModelDao{
         }
     }
 
-    @Override
-    public Usuario login(String email, String password) throws OlmException {
-        try {
-            PreparedStatement ps = ConexionPgsql.get().prepareStatement("select * from usuarios where email=?;");
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setNombres(rs.getString("Nombres"));
-                usuario.setEmail(rs.getString("Email"));
-                usuario.setPassword(rs.getString("Password"));
-                usuario.setCreado(rs.getObject("creado", LocalDateTime.class));
-                return usuario;
-            }
-        } catch (SQLException e) {
-            throw new OlmException(e.getMessage(), 3,this.getClass().getName()+".login");
-        }
-        return null;
-    }
+    
     
     
 }

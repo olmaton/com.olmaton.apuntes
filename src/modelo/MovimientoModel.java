@@ -11,6 +11,7 @@ import modelo.dto.FiltroMovimientoDTO;
 import modelo.dto.ReporteMovimientoDTO;
 import modelo.intefaces.IMovimientosModelDao;
 import modelo.intefaces.IMovimientosModel;
+import servicios.Sesion;
 
 /**
  *
@@ -37,37 +38,37 @@ public class MovimientoModel implements IMovimientosModel {
     }
 
     @Override
-    public boolean guardar(Movimiento movimiento) throws OlmException {
+    public boolean guardar(Movimiento movimiento,Sesion sesion) throws OlmException {
         return dao.guardar(movimiento);
     }
 
     @Override
-    public boolean editar(Movimiento movimiento) throws OlmException {
+    public boolean editar(Movimiento movimiento,Sesion sesion) throws OlmException {
         return dao.editar(movimiento);
     }
 
     @Override
-    public boolean eliminar(Movimiento movimiento) throws OlmException {
+    public boolean eliminar(Movimiento movimiento,Sesion sesion) throws OlmException {
         return dao.eliminar(movimiento);
     }
 
 
     @Override
-    public ArrayList<Movimiento> listar(Usuario usuario, FiltroMovimientoDTO filtro) throws OlmException {
+    public ArrayList<Movimiento> listar(Sesion sesion, FiltroMovimientoDTO filtro) throws OlmException {
         if (filtro.getFechaHoraFin() != null && filtro.getFechaHoraInicio() != null) {
-            return dao.listarPorFechas(usuario, filtro);
+            return dao.listarPorFechas(sesion.getUsuario(), filtro);
         } else {
-            return dao.listar(usuario, filtro);
+            return dao.listar(sesion.getUsuario(), filtro);
         }
 
     }
 
     @Override
-    public ArrayList<ReporteMovimientoDTO> reporteConsulta(Usuario usuario, FiltroMovimientoDTO filtro) throws OlmException {
+    public ArrayList<ReporteMovimientoDTO> reporteConsulta(Sesion sesion, FiltroMovimientoDTO filtro) throws OlmException {
         if (filtro.getFechaHoraFin() != null && filtro.getFechaHoraInicio() != null) {
-            return dao.reporteConsultaPorFechas(usuario, filtro);
+            return dao.reporteConsultaPorFechas(sesion.getUsuario(), filtro);
         } else {
-            return dao.reporteConsulta(usuario, filtro);
+            return dao.reporteConsulta(sesion.getUsuario(), filtro);
         }
     }
 }

@@ -44,7 +44,7 @@ public class UsuarioModel implements IUsuarioModel{
         Cuenta cuenta = new Cuenta();
         cuenta.setNombre("Principal");
         cuenta.setDescripcion("Esta cuenta se crea cuando se registra como nuevo usuario.");
-        cuenta.setUsuario(usuario);
+//        cuenta.setUsuario(usuario);
         return cuenta;
     }
 
@@ -55,7 +55,7 @@ public class UsuarioModel implements IUsuarioModel{
         usuario.setPassword(Encryption.getMD5(usuario.getPassword()));
         
         if(dao.registrarme(usuario)){            
-            daoCuenta.guardar(cuentaDefecto(usuario));            
+            daoCuenta.guardar(cuentaDefecto(usuario),usuario);            
             ArrayList<Tipo> tiposPorDefecto = daoTipo.listarGenerales();
             for (Tipo tipo : tiposPorDefecto) {
                 daoTipo.guardarTiposUsuarios(tipo, usuario);
@@ -70,19 +70,7 @@ public class UsuarioModel implements IUsuarioModel{
         return dao.existeEmail(email);
     }
 
-    @Override
-    public Usuario login(String email, String password) throws OlmException {
-        Usuario usuario = dao.login(email,"");
-        
-        if(usuario==null) throw new OlmException("Email o contraseña incorrectos.", 3,this.getClass().getName()+".login");
-        
-        if(usuario.getPassword().equals(Encryption.getMD5(password))) {
-            usuario.setPassword("-");
-            return usuario;
-        }
-        
-        throw new OlmException("Email o contraseña incorrectos.", 3,this.getClass().getName()+".login");
-    }
+   
     
     
     

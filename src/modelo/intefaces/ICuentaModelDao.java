@@ -4,6 +4,7 @@ import presentacion.utiles.OlmException;
 import entidades.Cuenta;
 import entidades.Usuario;
 import java.util.ArrayList;
+import servicios.Sesion;
 
 /**
  *
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  */
 public interface ICuentaModelDao {
 
-    public boolean guardar(Cuenta cuenta) throws OlmException;
+    public boolean guardar(Cuenta cuenta,Usuario usuario) throws OlmException;
 
     public boolean editar(Cuenta cuenta) throws OlmException;
 

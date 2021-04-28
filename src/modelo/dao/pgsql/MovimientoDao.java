@@ -36,6 +36,7 @@ public class MovimientoDao implements IMovimientosModelDao {
                     + "and (es_presupuesto=? or -1=?) ";
 
     TipoDao tipoDao = new TipoDao();
+    CuentaDao cuentaDao = new CuentaDao();
     public MovimientoDao() {
     }
     
@@ -101,7 +102,7 @@ public class MovimientoDao implements IMovimientosModelDao {
     @Override
     public ArrayList<Movimiento> listar(Usuario usuario, FiltroMovimientoDTO filtro) throws OlmException {
         ArrayList<Movimiento> retorno = new ArrayList<>();
-        CuentaDao cuentaDao = new CuentaDao();
+        
         try {
             PreparedStatement ps = ConexionPgsql.get().prepareCall(FILTRO_LISTAR
                     + " order by creado desc limit ? offset ?;");

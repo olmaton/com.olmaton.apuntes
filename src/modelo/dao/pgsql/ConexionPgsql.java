@@ -15,7 +15,6 @@ public class ConexionPgsql {
     private final static String BASE_DATOS = "olm_apuntes";
     private final static String USUARIO = "olmaton";
     private final static String PASSWORD = "olmaton";
-
     private static Connection cnx = null;
 
     public static Connection get() throws OlmException {

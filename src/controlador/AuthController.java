@@ -1,8 +1,14 @@
 package controlador;
 
 import configuracion.Configuracion;
+import entidades.Aplicacion;
 import presentacion.utiles.OlmException;
 import entidades.Usuario;
+import modelo.AuthModel;
+import modelo.UsuarioModel;
+import modelo.api.AuthApiModel;
+import modelo.dto.SesionDTO;
+import modelo.intefaces.IAuthModel;
 import presentacion.interfaces.LoginInterface;
 import servicios.Sesion;
 import modelo.intefaces.IUsuarioModel;
@@ -11,19 +17,20 @@ import modelo.intefaces.IUsuarioModel;
  *
  * @author olmaton
  */
-public class LoginController {
+public class AuthController {
 
     LoginInterface vista;
-    IUsuarioModel modelo;
+    IAuthModel modelo;
 
-    public LoginController(LoginInterface vista) {
+    public AuthController(LoginInterface vista) {
         this.vista = vista;
         switch (Configuracion.ORIGEN_DATOS) {
             case "api": {
+                modelo = new AuthApiModel();
                 break;
             }
             case "bd": {
-                modelo = new modelo.UsuarioModel();
+                modelo = new AuthModel();
                 break;
             }
             default: {
@@ -38,10 +45,14 @@ public class LoginController {
         try {
             String email = vista.getEmail();
             String password = vista.getPassword();
-            Usuario usuario = modelo.login(email,password);
+            Usuario usuario = new Usuario(email,password);
+            usuario.setOrigen(new Aplicacion(Configuracion.APP_NOMBRE, Configuracion.APP_CODIGO, Configuracion.APP_DESCRIPCION));
+            SesionDTO sesion = modelo.login(usuario);           
             
-            if(usuario!=null){
-                Sesion.getInstancia().setUsuario(usuario);
+            if(sesion!=null){
+                Sesion.getInstancia().setUsuario(sesion.getUsuario());
+                Sesion.getInstancia().setToken(sesion.getToken());
+                Sesion.getInstancia().setToken_refresh(sesion.getToken_refresh());
                 vista.irPrincipal();
             }
             
