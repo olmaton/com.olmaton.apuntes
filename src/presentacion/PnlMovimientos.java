@@ -82,6 +82,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         pnlControles.setBackground(Colores.getGris());
         Botones.estiloBotonGuardar(btnGuardar);
         Botones.estiloBotonCancelar(btnCancelar);
+        Botones.estiloBotonCancelar(btnMoverCuentaACuenta);
     }
 
     void setKeyListener() {
@@ -163,6 +164,7 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         pnlControles = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        btnMoverCuentaACuenta = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cboCuenta = new javax.swing.JComboBox<>();
@@ -234,12 +236,21 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
             }
         });
 
+        btnMoverCuentaACuenta.setText("CC");
+        btnMoverCuentaACuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoverCuentaACuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlControlesLayout = new javax.swing.GroupLayout(pnlControles);
         pnlControles.setLayout(pnlControlesLayout);
         pnlControlesLayout.setHorizontalGroup(
             pnlControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlControlesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnMoverCuentaACuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,7 +262,8 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
                 .addContainerGap()
                 .addGroup(pnlControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoverCuentaACuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -599,9 +611,9 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Total general"));
 
         txtTotalGeneral.setEditable(false);
+        txtTotalGeneral.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotalGeneral.setBackground(new java.awt.Color(255, 240, 255));
         txtTotalGeneral.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtTotalGeneral.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotalGeneral.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTotalGeneralKeyReleased(evt);
@@ -767,12 +779,17 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalGeneralKeyReleased
 
+    private void btnMoverCuentaACuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoverCuentaACuentaActionPerformed
+        moverDeCuentaACuenta();
+    }//GEN-LAST:event_btnMoverCuentaACuentaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarTipo;
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnMoverCuentaACuenta;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<Cuenta> cboCuenta;
     private javax.swing.JComboBox<Limit> cboLimit;
@@ -818,6 +835,16 @@ public class PnlMovimientos extends javax.swing.JPanel implements MovimientosInt
     private javax.swing.JTextField txtTotalPresupuesto;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void moverDeCuentaACuenta(){
+        JdiMovimientoCuentaACuenta jdiMovimientoCuentaACuenta = new JdiMovimientoCuentaACuenta(vistaPadre.getFramePrincipal());
+        jdiMovimientoCuentaACuenta.setVisible(true);
+        if(jdiMovimientoCuentaACuenta.isExito()){
+            listar();
+        }
+        
+    }
+    
     private void agregaTipo() {
         JdiMovimientosTipo jdiMovimientoTipo = new JdiMovimientosTipo(vistaPadre.getFramePrincipal());
         jdiMovimientoTipo.setLocationRelativeTo(this);

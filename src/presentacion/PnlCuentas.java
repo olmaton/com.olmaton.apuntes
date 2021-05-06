@@ -84,7 +84,9 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
         OlmJTableHead head = new OlmJTableHead();        
         head.addColumn("#", 60, SwingConstants.CENTER,new Color(230, 230, 230),Color.DARK_GRAY);
         head.addColumn("Nombre", 600);
-        head.addColumn("Descripción", 800);
+        head.addColumn("Ingresos", 200,SwingConstants.RIGHT);
+        head.addColumn("Egresos", 200,SwingConstants.RIGHT);
+        head.addColumn("Total", 200,SwingConstants.RIGHT);
         head.addColumn("Actualizado", 200,SwingConstants.CENTER);
         head.addColumn("-", 60);
         head.addColumn("-", 60);
@@ -271,8 +273,10 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
             for (int i = 0; i < lista.size(); i++) {
                 datosTabla[0] = (i+1);
                 datosTabla[1] = lista.get(i).getNombre();
-                datosTabla[2] = lista.get(i).getDescripcion();
-                datosTabla[3] = lista.get(i).getActualizadoFormato();
+                datosTabla[2] = lista.get(i).getTotalIngresoFormato();
+                datosTabla[3] = lista.get(i).getTotalEgresoFormato();
+                datosTabla[4] = lista.get(i).getTotalFinalFormato();
+                datosTabla[5] = lista.get(i).getActualizadoFormato();
                 dtm.addRow(datosTabla);
             }
         } catch (Exception e) {

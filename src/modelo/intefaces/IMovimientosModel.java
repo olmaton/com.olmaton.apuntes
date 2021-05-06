@@ -4,6 +4,7 @@ import presentacion.utiles.OlmException;
 import entidades.Movimiento;
 import java.util.ArrayList;
 import modelo.dto.FiltroMovimientoDTO;
+import modelo.dto.MovimientoCuentaACuentaDTO;
 import modelo.dto.ReporteMovimientoDTO;
 import servicios.Sesion;
 
@@ -13,6 +14,7 @@ import servicios.Sesion;
  */
 public interface IMovimientosModel {
     public boolean guardar(Movimiento movimiento,Sesion sesion) throws OlmException;
+    public boolean moverEntreCuentas(MovimientoCuentaACuentaDTO dto,Sesion sesion) throws OlmException;
     public boolean editar(Movimiento movimiento,Sesion sesion) throws OlmException;
     public boolean eliminar(Movimiento movimiento,Sesion sesion) throws OlmException; 
     public ArrayList<Movimiento> listar(Sesion sesion,FiltroMovimientoDTO filtro) throws OlmException;

@@ -148,7 +148,11 @@ public class Movimiento {
     }
     
     public String getMontoFormato(){
-        return Montos.formatoDosDecimales((valor_unitario_ingreso*cantidad)+(valor_unitario_egreso*cantidad));
+        if(tipo.getSigno()>0&&valor_unitario_ingreso>=0){
+        return Montos.formatoDosDecimales((valor_unitario_ingreso*cantidad));
+        }else{
+            return Montos.formatoDosDecimales((valor_unitario_egreso*cantidad)*-1);
+        }
     }
     
     public void validarIngresoEgreso(){

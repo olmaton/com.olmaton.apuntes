@@ -6,14 +6,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import configuracion.Configuracion;
-import entidades.Cuenta;
 import entidades.Movimiento;
-import entidades.Tipo;
-import entidades.Usuario;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import modelo.dto.FiltroMovimientoDTO;
+import modelo.dto.MovimientoCuentaACuentaDTO;
 import modelo.dto.ReporteMovimientoDTO;
 import modelo.intefaces.IMovimientosModel;
 import presentacion.utiles.LocalDateAdapterDeserializer;
@@ -123,6 +121,23 @@ public class MovimientoApiModel implements IMovimientosModel {
             return new ArrayList<>();
         } catch (JsonSyntaxException e) {
             throw new OlmException(e.getMessage(), 3, this.getClass().getName() + ",reporteConsulta");
+        }
+    }
+
+    @Override
+    public boolean moverEntreCuentas(MovimientoCuentaACuentaDTO dto, Sesion sesion) throws OlmException {
+         try {
+
+            String request = gson.toJson(dto);
+            String httpResponse = http.post(ApiUrl.MOVIMIENTOS_MOVER_ENTRE_CUENTAS, request,sesion.getToken());
+            if (httpResponse.contains("OK")) {
+                return true;
+            } else {
+                throw new OlmException(httpResponse, 2, this.getClass().getName() + ",moverEntreCuentas");
+            }
+
+        } catch (JsonSyntaxException e) {
+            throw new OlmException(e.getMessage(), 3, this.getClass().getName() + ",moverEntreCuentas");
         }
     }
 

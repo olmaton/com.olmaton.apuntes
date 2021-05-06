@@ -8,6 +8,7 @@ import entidades.Tipo;
 import entidades.Usuario;
 import java.util.ArrayList;
 import modelo.dto.FiltroMovimientoDTO;
+import modelo.dto.MovimientoCuentaACuentaDTO;
 import modelo.dto.ReporteMovimientoDTO;
 import modelo.intefaces.IMovimientosModelDao;
 import modelo.intefaces.IMovimientosModel;
@@ -70,5 +71,10 @@ public class MovimientoModel implements IMovimientosModel {
         } else {
             return dao.reporteConsulta(sesion.getUsuario(), filtro);
         }
+    }
+
+    @Override
+    public boolean moverEntreCuentas(MovimientoCuentaACuentaDTO dto, Sesion sesion) throws OlmException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

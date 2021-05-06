@@ -20,6 +20,7 @@ public class ApiUrl {
     public static String CUENTAS="/cuentas";
     
     public static String MOVIMIENTOS="/movimientos";
+    public static String MOVIMIENTOS_MOVER_ENTRE_CUENTAS="/movimientos/mover-entre-cuentas";
     public static String MOVIMIENTOS_FILTRAR="/movimientos/filtrar";
     public static String MOVIMIENTOS_REPORTE_FILTRAR="/movimientos/reporte-filtrar";
 }

@@ -58,7 +58,7 @@ public class MovimientoController {
                 break;
             }
         }
-        listaLimites.add(new Limit(5, "Mostrar 5"));
+        //listaLimites.add(new Limit(5, "Mostrar 5"));
         listaLimites.add(new Limit(50, "Mostrar 50"));
         listaLimites.add(new Limit(100, "Mostrar 100"));
         listaLimites.add(new Limit(500, "Mostrar 500"));

@@ -36,7 +36,7 @@ public class FrmLogin extends javax.swing.JFrame implements LoginInterface{
         setStyleBotones();
 
         txtPassword.setText("123");
-        txtEmail.setText("admin@olmaton.com");
+        txtEmail.setText("casa@olmaton.com");
         lblTitle.setForeground(Colores.getPrincipalOscuro());
         this.setIconImage(Imagenes.getImage("icon"));
 
