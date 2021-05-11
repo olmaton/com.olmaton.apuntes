@@ -6,3 +6,4 @@ build/*
 nbproject/private/*
 src/presentacion/utiles/olmjtable/TableTest.java
 /dist/
+dist.7z

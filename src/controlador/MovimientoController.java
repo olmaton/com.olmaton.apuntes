@@ -134,22 +134,22 @@ public class MovimientoController {
 
         for (ReporteMovimientoDTO m : lista) {
             if (m.getEs_presupuesto() == 1) {
-                ingresos += m.getTotal_ingresos();
-                ingresos += m.getTotal_egresos();
-            } else {
                 ingresos_presupuestos += m.getTotal_ingresos();
                 salidas_presupuestos += m.getTotal_egresos();
+            } else {
+                ingresos += m.getTotal_ingresos();
+                salidas += m.getTotal_egresos();
             }
         }
         double total = ingresos - salidas;
         double total_presupuestos = ingresos_presupuestos - salidas_presupuestos;
         vista.llenarTotales(
-                Montos.formatoDosDecimales(ingresos_presupuestos),
-                Montos.formatoDosDecimales(salidas_presupuestos),
-                Montos.formatoDosDecimales(total_presupuestos),
                 Montos.formatoDosDecimales(ingresos),
                 Montos.formatoDosDecimales(salidas),
-                Montos.formatoDosDecimales(total)
+                Montos.formatoDosDecimales(total),
+                Montos.formatoDosDecimales(ingresos_presupuestos),
+                Montos.formatoDosDecimales(salidas_presupuestos),
+                Montos.formatoDosDecimales(total_presupuestos)
         );
         vista.llenarTotalGeneral(Montos.formatoDosDecimales(total+total_presupuestos));
         

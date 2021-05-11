@@ -10,6 +10,7 @@ import modelo.api.CuentaApiModel;
 import presentacion.interfaces.CuentasInterface;
 import servicios.Sesion;
 import modelo.intefaces.ICuentaModel;
+import presentacion.utiles.Montos;
 
 /**
  *
@@ -73,6 +74,17 @@ public class CuentaController {
             vista.mostrarMensaje(e.getMessage(), e.getCode());
         }
         vista.listar(lista);
+        calcularTotales();
+    }
+    
+    private void calcularTotales(){
+        double ingresos = 0;
+        double salidas = 0;
+        for (Cuenta cuenta : lista) {
+            ingresos+=cuenta.getTotal_ingreso();
+            salidas+=cuenta.getTotal_egreso();
+        }
+        vista.llenarTotales(Montos.formatoDosDecimales(ingresos), Montos.formatoDosDecimales(salidas), Montos.formatoDosDecimales(ingresos-salidas));
     }
 
     public void procesar() {

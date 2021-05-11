@@ -126,11 +126,18 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbLista = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        txtTotal = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtSalidas = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtEntradas = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         pnlFormulario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Nombre:");
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel4.setText("Descripción:");
 
@@ -217,15 +224,92 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
         ));
         jScrollPane1.setViewportView(tbLista);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Totales sin considerar los presupuestos"));
+
+        txtTotal.setEditable(false);
+        txtTotal.setBackground(new java.awt.Color(235, 255, 255));
+        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTotalKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setText("Total:");
+
+        txtSalidas.setEditable(false);
+        txtSalidas.setBackground(new java.awt.Color(255, 251, 243));
+        txtSalidas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtSalidas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSalidas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSalidasKeyReleased(evt);
+            }
+        });
+
+        jLabel10.setText("Egresos:");
+
+        txtEntradas.setEditable(false);
+        txtEntradas.setBackground(new java.awt.Color(231, 255, 238));
+        txtEntradas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtEntradas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEntradas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEntradasKeyReleased(evt);
+            }
+        });
+
+        jLabel11.setText("Ingresos:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtSalidas)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTotal)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -233,10 +317,10 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1)
+                    .addComponent(pnlFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -248,19 +332,38 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         controlador.inicializar();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtTotalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalKeyReleased
+
+    private void txtSalidasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalidasKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSalidasKeyReleased
+
+    private void txtEntradasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEntradasKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEntradasKeyReleased
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnlControles;
     private javax.swing.JPanel pnlFormulario;
     private javax.swing.JTable tbLista;
     private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtEntradas;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSalidas;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
     
@@ -329,6 +432,15 @@ public class PnlCuentas extends javax.swing.JPanel implements CuentasInterface, 
     public void mostrarMensaje(String mensaje, int code) {
         DialogMessage.getInstancia().setMensaje(vistaPadre.getFramePrincipal(), mensaje, code);
     }
+
+    @Override
+    public void llenarTotales(String entradas, String salidas, String total) {
+        txtEntradas.setText(entradas);
+        txtSalidas.setText(salidas);
+        txtTotal.setText(total);
+    }
+    
+    
 
     @Override
     public void keyTyped(KeyEvent e) {

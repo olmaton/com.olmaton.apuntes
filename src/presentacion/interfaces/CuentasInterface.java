@@ -15,5 +15,6 @@ public interface CuentasInterface {
     void setEditar(Cuenta item);
     boolean validar();
     void inicializar();
+    void llenarTotales(String entradas,String salidas,String total);
     
 }

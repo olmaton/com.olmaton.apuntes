@@ -92,6 +92,8 @@ public class Cuenta {
     public String toString() {
         return nombre;
     }
+    
+    
 
     public Double getTotal_ingreso() {
         return total_ingreso;
